@@ -5,6 +5,7 @@ import './App.css'
 import {Navigation} from './components/Navigation'
 import {Home} from './components/Home'
 import {LeaderBoard} from './components/LeaderBoard'
+import {QuizPage} from './components/QuizPage'
 import {Footer} from './components/Footer'
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path='/leaderboard' element={<LeaderBoard/>} />
+            <Route path="/quiz/:quizId/:quizName" element={<QuizPage />} />
           </Routes>
 
         </div>

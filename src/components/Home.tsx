@@ -1,5 +1,5 @@
 import { Container, Typography, Grid, Card } from "@material-ui/core";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useStyles } from "../utils/quizStyle";
 import { useQuizData } from "../context/QuizDataProvider";
@@ -49,7 +49,7 @@ export const Home = () => {
                     dispatch({ type: "RESET" });
                   }}
                 >
-                  {/* <Link to={`/quiz/${category?._id}/${category?.name}`}> */}
+                  <Link to={`/quiz/${category?._id}/${category?.name}`}>
                     <Card className={classes.card}>
                       <img
                         src={category?.imgUrl}
@@ -57,7 +57,7 @@ export const Home = () => {
                         className={classes.cardMedia}
                       />
                     </Card>
-                  {/* </Link> */}
+                  </Link>
                 </Grid>
               );
             })}
