@@ -1,21 +1,21 @@
 import React from 'react'
-import {CssBaseline, AppBar, Toolbar, Typography, IconButton} from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
+import {CssBaseline} from '@material-ui/core'
+import {Routes, Route} from 'react-router-dom'
 import './App.css'
+import {Navigation} from './components/Navigation'
+import {Footer} from './components/Footer'
 
-function App() {
+const App = () => {
   return (
     <div className="App">
         <CssBaseline/>
-        <AppBar>
 
-          <Toolbar>
-          <IconButton>
-          <MenuIcon/>
-          </IconButton>
-            <Typography>fandomQUIZ</Typography>
-          </Toolbar>
-        </AppBar>
+        <Navigation />
+        <div style={{minHeight: "100vh"}}>
+          
+        </div>
+        <Footer/>
+
     </div>
   );
 }
