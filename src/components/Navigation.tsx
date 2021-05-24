@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useStyles } from "../utils/quizStyle";
 
 export const QuizIcon = () => {
@@ -21,18 +21,18 @@ export const Navigation = () => {
       <AppBar position="sticky">
         <Toolbar className={classes.navBg}>
           <IconButton size="small" edge="end">
-            {/* <Link to="/"> */}
+            <Link to="/">
               <QuizIcon />
-            {/* </Link> */}
+            </Link>
           </IconButton>
           <Typography variant="h5" className={classes.navTitle}>
             {" "}
             fandomQUIZ{" "}
           </Typography>
           <IconButton>
-            {/* <Link to="/leaderboard"> */}
+            <Link to="/leaderboard">
               <EqualizerIcon className={classes.navChart} />
-            {/* </Link> */}
+            </Link>
           </IconButton>
         </Toolbar>
       </AppBar>

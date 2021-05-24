@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom'
+import {QuizDataProvider} from './context/QuizDataProvider' 
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   // <React.StrictMode>
   <Router>
-    <App />
+    <QuizDataProvider>
+      <App />
+    </QuizDataProvider>
   </Router>
   // </React.StrictMode>
   ,
