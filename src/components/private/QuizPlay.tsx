@@ -198,8 +198,7 @@ export const QuizPlay = () => {
                 className={classes.btnFinish}
                 onClick={() => {
                 //   leaderBoardUpdate();
-                //   navigate("/result");
-                console.log("result page reached")
+                  navigate("/result");
                 }}
               >
                 FINISH

@@ -185,11 +185,12 @@ export const useStyles = makeStyles(() => ({
   graph: {
     borderLeft: "1px solid #71717A",
     borderBottom: "1px solid #71717A",
-    marginBottom: "2rem"
+    marginBottom: "2rem",
+    backgroundColor:"yellow"
   },
 
   resultOption: {
-    fontSize: "1.25rem",
+    fontSize: "1.15rem",
     margin: "0.25rem 0rem",
     padding: "0.5rem",
     borderRadius: "0.5rem",

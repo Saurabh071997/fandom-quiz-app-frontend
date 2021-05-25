@@ -175,3 +175,17 @@ footer {
     transform: translateX(-31px);
   }
 }
+
+.graph {
+  border-left: 1px solid #71717A;
+  border-bottom: 1px solid #71717A;
+  width:60%;
+  margin:1rem auto 2rem auto;
+}
+
+
+@media screen and (max-width: 600px) {
+  .graph{
+    width:auto;
+  }
+}
