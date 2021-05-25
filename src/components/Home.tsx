@@ -15,14 +15,14 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch({ type: "RESET" });
-      // eslint-disable-next-line
+    // eslint-disable-next-line 
   },[]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-//   let img_bg ="https://media-exp1.licdn.com/dms/image/C4E1BAQEnc4u23VZjAw/company-background_10000/0/1591973337782?e=2159024400&v=beta&t=jTHTR0_j5qynQk-0wR9j6ZuL0ebuuFtLRGNibPmETlw";
+
   let img_bg = "http://valmorganoutdoor.com/wp-content/uploads/2018/09/Photoshop-Template_PR.png";
 
   return (<div className="div-home">

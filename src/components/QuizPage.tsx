@@ -1,5 +1,5 @@
 import { Container, Typography, Grid, Button, Input } from "@material-ui/core";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useStyles } from "../utils/quizStyle";
 import { useState, useEffect } from "react";
 import { useQuizData } from "../context/QuizDataProvider";
@@ -9,9 +9,9 @@ export const QuizPage = () => {
   const classes = useStyles();
   const { quizId } = useParams();
   const {
-    state: { categoryList }
+    state: { categoryList }, handleQuizPlay
   } = useQuizData();
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [showPlayModal, setShowPlayModal] = useState<boolean>(false);
   const [showInstructionModal, setShowInstructionModal] = useState<boolean>(false);
@@ -40,21 +40,21 @@ export const QuizPage = () => {
             Instructions
           </Typography>
           <Typography align="left" variant="subtitle1" gutterBottom>
-            &gt; &nbsp; Each Question must be answered
+            &gt;&nbsp;Each Question must be answered
           </Typography>
           <Typography align="left" variant="subtitle1" gutterBottom>
-            &gt;&nbsp; Each correct answer will award you 5 points
+            &gt;&nbsp;Each correct answer will award you 5 points
           </Typography>
           <Typography align="left" variant="subtitle1" gutterBottom>
-            &gt; &nbsp;Each incorrect answer would deduct 2 points
-          </Typography>
-
-          <Typography align="left" variant="subtitle1" gutterBottom>
-            &gt; &nbsp;Score atleast 70% to be featured on leaderboard
+            &gt;&nbsp;Each incorrect answer would deduct 2 points
           </Typography>
 
           <Typography align="left" variant="subtitle1" gutterBottom>
-            &gt; &nbsp;Avoid refreshing page while playing else all progress
+            &gt;&nbsp;Score atleast 70% to be featured on leaderboard
+          </Typography>
+
+          <Typography align="left" variant="subtitle1" gutterBottom>
+            &gt;&nbsp;Avoid refreshing page while playing else all progress
             will be lost
           </Typography>
 
@@ -76,7 +76,9 @@ export const QuizPage = () => {
   const QuizPlayModal = () => {
     const [username, setUsername] = useState<string | null>(null);
     const [inputError, setInputError] = useState<boolean>(false);
+    const [nameError, setNameError ] = useState<boolean>(false);
     let errormsg = "Provide a username !! ";
+    let nameErrormsg = "Username can only be alphanumeric and not more than 10 character long";
 
     return (
       <div className="modal-div">
@@ -97,6 +99,8 @@ export const QuizPage = () => {
                 onChange={(e) => {
                   let input = e.target.value;
                   setUsername(input);
+                  setNameError(false);
+                  setInputError(false);
                 }}
               />
             </form>
@@ -104,6 +108,12 @@ export const QuizPage = () => {
               <div style={{ fontSize: "0.85rem", color: "#EF4444" }}>
                 {errormsg}
               </div>
+            )}
+
+            {nameError && (
+              <Container maxWidth="xs" style={{ fontSize: "0.85rem", color: "#EF4444"}}>
+                {nameErrormsg}
+              </Container>
             )}
 
             <Grid
@@ -120,11 +130,16 @@ export const QuizPage = () => {
                     if (username === null || username.length < 1) {
                       setInputError(true);
                     } else {
-                      let quizPlayObj = { username, categoryId: quizId };
-                    //   handleQuizPlay(quizPlayObj);
-                    //   navigate(`/quiz/${quizId}/play`);
-                    setShowPlayModal(false)
-                    console.log("quizPlayObj : ",quizPlayObj )
+                        let re = /^([a-zA-Z0-9]){1,10}$/i
+                        if(!re.test(username)){
+                            setNameError(true)
+                        }else{
+                            let quizPlayObj = { username, categoryId: quizId };
+                              handleQuizPlay(quizPlayObj);
+                              navigate(`/quiz/${quizId}/play`);
+                            setShowPlayModal(false)
+                            console.log("quizPlayObj : ",quizPlayObj )
+                        }
                     }
                   }}
                 >

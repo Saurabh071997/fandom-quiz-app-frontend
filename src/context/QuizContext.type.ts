@@ -2,7 +2,7 @@ import {
     Question,
     QuizCategory,
     UserAnswer,
-    // QuizPlayProps,
+    QuizPlayProps,
     LeaderBoardType,
     // LeaderBoardProps
   } from "../utils/Quiz.type";
@@ -22,7 +22,7 @@ import {
   export type ContextType = {
     state: InitialStateType;
     dispatch: (action: ActionType) => void;
-    // handleQuizPlay: (quizplayObj: QuizPlayProps) => void;
+    handleQuizPlay: (quizplayObj: QuizPlayProps) => void;
     // handleLeaderBoardUpdate: (leaderBoardObj: LeaderBoardProps) => void;
   };
   

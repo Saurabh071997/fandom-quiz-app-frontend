@@ -6,6 +6,8 @@ import {Navigation} from './components/Navigation'
 import {Home} from './components/Home'
 import {LeaderBoard} from './components/LeaderBoard'
 import {QuizPage} from './components/QuizPage'
+import {PrivateRoute} from './components/PrivateRoute'
+import {QuizPlay} from './components/private/QuizPlay'
 import {Footer} from './components/Footer'
 
 const App = () => {
@@ -19,6 +21,8 @@ const App = () => {
             <Route path="/" element={<Home/>} />
             <Route path='/leaderboard' element={<LeaderBoard/>} />
             <Route path="/quiz/:quizId/:quizName" element={<QuizPage />} />
+            <PrivateRoute path="/quiz/:quizId/play" element={<QuizPlay />} />
+            
           </Routes>
 
         </div>

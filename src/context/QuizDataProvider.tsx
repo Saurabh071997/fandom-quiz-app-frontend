@@ -5,6 +5,8 @@ import { ContextType } from "./QuizContext.type";
 import { quizDataReducer, initialState } from "./quizDataReducer";
 import {
   CategoryResponse,
+  QuizDataResponse,
+  QuizPlayProps,
   ServerError
 } from "../utils/Quiz.type";
 
@@ -32,26 +34,26 @@ export const QuizDataProvider: React.FC = ({ children }) => {
     }
   };
 
-//   const getQuizData = async (
-//     categoryId: string
-//   ): Promise<QuizDataResponse | ServerError> => {
-//     try {
-//       let response = await axios.get(
-//         `https://fandom-quiz.herokuapp.com/quiz/${categoryId}`
-//       );
-//       return response.data;
-//     } catch (err) {
-//       if (axios.isAxiosError(err)) {
-//         const serverError = err as AxiosError<ServerError>;
-//         if (serverError && serverError.response) {
-//           return serverError.response.data;
-//         }
-//       }
+  const getQuizData = async (
+    categoryId: string
+  ): Promise<QuizDataResponse | ServerError> => {
+    try {
+      let response = await axios.get(
+        `https://fandom-quiz.herokuapp.com/quiz/${categoryId}`
+      );
+      return response.data;
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        const serverError = err as AxiosError<ServerError>;
+        if (serverError && serverError.response) {
+          return serverError.response.data;
+        }
+      }
 
-//       console.log(err);
-//       return { success: false, errorMessage: "something went wrong!" };
-//     }
-//   };
+      console.log(err);
+      return { success: false, errorMessage: "something went wrong!" };
+    }
+  };
 
 //   const getLeaderBoardData = async (): Promise<
 //     LeaderBoardResponse | ServerError
@@ -144,33 +146,33 @@ export const QuizDataProvider: React.FC = ({ children }) => {
 //     })();
 //   }, []);
 
-//   const handleQuizPlay = async (quizPlayObj: QuizPlayProps) => {
-//     dispatch({ type: "TOGGLE_LOADER", payload: { toggle: true } });
-//     try {
-//       let response = await getQuizData(quizPlayObj.categoryId);
-//       if ("data" in response) {
-//         let {
-//           data: { questionset }
-//         } = response;
-//         dispatch({
-//           type: "SET_USERNAME",
-//           payload: { value: quizPlayObj.username }
-//         });
-//         dispatch({
-//           type: "SET_QUESTION_LIST",
-//           payload: { questionList: questionset }
-//         });
+  const handleQuizPlay = async (quizPlayObj: QuizPlayProps) => {
+    dispatch({ type: "TOGGLE_LOADER", payload: { toggle: true } });
+    try {
+      let response = await getQuizData(quizPlayObj.categoryId);
+      if ("data" in response) {
+        let {
+          data: { questionset }
+        } = response;
+        dispatch({
+          type: "SET_USERNAME",
+          payload: { value: quizPlayObj.username }
+        });
+        dispatch({
+          type: "SET_QUESTION_LIST",
+          payload: { questionList: questionset }
+        });
 
-//         dispatch({ type: "TOGGLE_PLAY", payload: { toggle: true } });
-//       } else {
-//         console.log(response.errorMessage);
-//       }
-//     } catch (err) {
-//       console.error(err);
-//     } finally {
-//       dispatch({ type: "TOGGLE_LOADER", payload: { toggle: false } });
-//     }
-//   };
+        dispatch({ type: "TOGGLE_PLAY", payload: { toggle: true } });
+      } else {
+        console.log(response.errorMessage);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      dispatch({ type: "TOGGLE_LOADER", payload: { toggle: false } });
+    }
+  };
 
 //   const handleLeaderBoardUpdate = async (leaderBoardObj: LeaderBoardProps) => {
 //     dispatch({ type: "TOGGLE_LOADER", payload: { toggle: true } });
@@ -196,7 +198,7 @@ export const QuizDataProvider: React.FC = ({ children }) => {
 
   return (
     <QuizDataContext.Provider
-      value={{ state, dispatch }}
+      value={{ state, dispatch, handleQuizPlay }}
     >
       {children}
     </QuizDataContext.Provider>
