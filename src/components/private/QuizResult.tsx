@@ -143,8 +143,6 @@ export const QuizResult = () => {
                           style={{
                             color: "white",
                             backgroundColor: bgColor
-                            // color: bgColor,
-                            // border: `1px solid ${bgColor}`
                           }}
                           className={classes.resultOption}
                         >

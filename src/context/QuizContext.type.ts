@@ -4,7 +4,7 @@ import {
     UserAnswer,
     QuizPlayProps,
     LeaderBoardType,
-    // LeaderBoardProps
+    LeaderBoardProps
   } from "../utils/Quiz.type";
   
   export type InitialStateType = {
@@ -23,7 +23,7 @@ import {
     state: InitialStateType;
     dispatch: (action: ActionType) => void;
     handleQuizPlay: (quizplayObj: QuizPlayProps) => void;
-    // handleLeaderBoardUpdate: (leaderBoardObj: LeaderBoardProps) => void;
+    handleLeaderBoardUpdate: (leaderBoardObj: LeaderBoardProps) => void;
   };
   
   export type ActionType =

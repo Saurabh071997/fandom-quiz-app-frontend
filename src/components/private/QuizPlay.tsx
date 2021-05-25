@@ -5,7 +5,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQuizData } from "../../context/QuizDataProvider";
-import { Option } from "../../utils/Quiz.type";
+import { Option, LeaderBoardProps} from "../../utils/Quiz.type";
 // import { Loader } from "../Loader";
 
 export const QuizPlay = () => {
@@ -22,8 +22,8 @@ export const QuizPlay = () => {
     //   isPlaying,
     //   isLoading
     },
-    dispatch
-    // handleLeaderBoardUpdate
+    dispatch,
+    handleLeaderBoardUpdate
   } = useQuizData();
 
   const TOTAL_QUESTIONS = quizQuestionList?.length;
@@ -99,7 +99,7 @@ export const QuizPlay = () => {
     setCurrentQuestionNo((currentQuestionNo) => currentQuestionNo + 1);
     setIsAnswered(false);
   };
-/*
+
   const leaderBoardUpdate = () => {
     let leaderBoardObj: LeaderBoardProps = {
       username: userName,
@@ -108,9 +108,9 @@ export const QuizPlay = () => {
       totalQuestions: TOTAL_QUESTIONS
     };
 
-    // handleLeaderBoardUpdate(leaderBoardObj);
+    handleLeaderBoardUpdate(leaderBoardObj);
   };
-*/
+
   return (
     <div style={{ marginBottom: "5rem" }}>
       <Container maxWidth="md">
@@ -145,7 +145,7 @@ export const QuizPlay = () => {
 
         {showExitModal && <ExitModal />}
 
-        {score}
+        {/* {score} */}
 
         <Container maxWidth="sm">
           <Typography gutterBottom className={classes.quizQuestion}>
@@ -197,7 +197,7 @@ export const QuizPlay = () => {
               <button
                 className={classes.btnFinish}
                 onClick={() => {
-                //   leaderBoardUpdate();
+                  leaderBoardUpdate();
                   navigate("/result");
                 }}
               >
