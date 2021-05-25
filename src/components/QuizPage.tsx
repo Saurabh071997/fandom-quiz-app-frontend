@@ -3,13 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useStyles } from "../utils/quizStyle";
 import { useState, useEffect } from "react";
 import { useQuizData } from "../context/QuizDataProvider";
-// import { Loader } from "./Loader";
+import { Loader } from "./Loader";
 
 export const QuizPage = () => {
   const classes = useStyles();
   const { quizId } = useParams();
   const {
-    state: { categoryList }, handleQuizPlay
+    state: { categoryList, isLoading}, handleQuizPlay
   } = useQuizData();
   const navigate = useNavigate();
 
@@ -163,7 +163,7 @@ export const QuizPage = () => {
       </div>
     );
   };
-  return (
+  return isLoading ? <Loader/> : (
     <div className="quiz-home">
       <Container maxWidth="sm" className={classes.quizContainer}>
         <img src={img_bg} className={classes.quizBgImg} alt="img" />

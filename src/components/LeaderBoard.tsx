@@ -2,11 +2,11 @@ import { Container, Typography, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useQuizData } from "../context/QuizDataProvider";
-// import { Loader } from "./Loader";
+import { Loader } from "./Loader";
 
 export const LeaderBoard = () => {
   const {
-    state: { leaderBoardList, categoryList }
+    state: { leaderBoardList, categoryList, isLoading}
   } = useQuizData();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export const LeaderBoard = () => {
 
   const sortedList = leaderBoardList.sort((a, b) => b.score - a.score);
 
-  return (
+  return isLoading ? <Loader/> : (
     <div>
       <Typography
         align="center"

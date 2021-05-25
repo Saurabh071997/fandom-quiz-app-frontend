@@ -6,7 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQuizData } from "../../context/QuizDataProvider";
 import { Option, LeaderBoardProps} from "../../utils/Quiz.type";
-// import { Loader } from "../Loader";
+import { Loader } from "../Loader";
 
 export const QuizPlay = () => {
   const classes = useStyles();
@@ -18,16 +18,15 @@ export const QuizPlay = () => {
       categoryList,
       userName,
       userAnswerList,
-      score
-    //   isPlaying,
-    //   isLoading
+      score,
+      isLoading
     },
     dispatch,
     handleLeaderBoardUpdate
   } = useQuizData();
 
   const TOTAL_QUESTIONS = quizQuestionList?.length;
-// const TOTAL_QUESTIONS = 5;
+
 // eslint-disable-next-line
   const currentCategory = categoryList?.find(({ _id }) => _id == quizId);
   const [showExitModal, setShowExitModal] = useState<boolean>(false);
@@ -111,7 +110,7 @@ export const QuizPlay = () => {
     handleLeaderBoardUpdate(leaderBoardObj);
   };
 
-  return (
+  return isLoading ? <Loader/> :(
     <div style={{ marginBottom: "5rem" }}>
       <Container maxWidth="md">
         <Typography

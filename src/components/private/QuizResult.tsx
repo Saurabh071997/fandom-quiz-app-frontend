@@ -3,12 +3,12 @@ import { useStyles } from "../../utils/quizStyle";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useQuizData } from "../../context/QuizDataProvider";
-// import { Loader } from "../Loader";
+import { Loader } from "../Loader";
 
 export const QuizResult = () => {
   const classes = useStyles();
   const {
-    state: { userName, score, quizQuestionList, userAnswerList }
+    state: { userName, score, quizQuestionList, userAnswerList , isLoading}
   } = useQuizData();
 
   const TOTAL_SCORE = userAnswerList?.length * 5;
@@ -23,7 +23,7 @@ export const QuizResult = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  return (
+  return isLoading ? <Loader/>:(
     <div>
       <Typography
         align="center"

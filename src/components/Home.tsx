@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useStyles } from "../utils/quizStyle";
 import { useQuizData } from "../context/QuizDataProvider";
-// import { Loader } from "./Loader";
+import { Loader } from "./Loader";
 
 export const Home = () => {
   const classes = useStyles();
   const {
-    state: { categoryList },
+    state: { categoryList, isLoading },
     dispatch
   } = useQuizData();
 
@@ -25,7 +25,7 @@ export const Home = () => {
 
   let img_bg = "http://valmorganoutdoor.com/wp-content/uploads/2018/09/Photoshop-Template_PR.png";
 
-  return (<div className="div-home">
+  return isLoading ? <Loader/> : (<div className="div-home">
       <div className="home-banner">
         <img src={img_bg} alt="home" className="img-home" />
       </div>
