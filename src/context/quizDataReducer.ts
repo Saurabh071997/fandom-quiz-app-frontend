@@ -2,13 +2,15 @@ import { ActionType, InitialStateType } from "./QuizContext.type";
 
 export const initialState: InitialStateType = {
   categoryList: [],
-  selectedCategory: null,
+  // selectedCategory: null,
   quizQuestionList: [],
   score: 0,
-  userName: null,
+  // userName: null,
   userAnswerList: [],
   leaderBoardList: [],
+  userScoreList:[],
   isPlaying: false,
+  quizFinished:false,
   isLoading: false
 };
 
@@ -19,22 +21,25 @@ export function quizDataReducer(state: InitialStateType, action: ActionType) {
         ...state,
         quizQuestionList: [],
         score: 0,
-        userName: null,
         userAnswerList: [],
-        isPlaying: false
+        isPlaying: false,
+        quizFinished:false
       };
 
     case "SET_CATEGORY_LIST":
       return { ...state, categoryList: action.payload.categoryList };
 
-    case "SELECT_CATEGORY":
-      return { ...state, selectedCategory: action.payload.category };
+    // case "SELECT_CATEGORY":
+    //   return { ...state, selectedCategory: action.payload.category };
 
     case "SET_QUESTION_LIST":
       return { ...state, quizQuestionList: action.payload.questionList };
+    
+    case "SET_USER_SCORE_LIST":
+      return {...state, userScoreList:action.payload.scorelist}
 
-    case "SET_USERNAME":
-      return { ...state, userName: action.payload.value };
+    // case "SET_USERNAME":
+    //   return { ...state, userName: action.payload.value };
 
     case "SET_LEADER_BOARD_LIST":
       return { ...state, leaderBoardList: action.payload.leaderBoardList };
@@ -59,6 +64,9 @@ export function quizDataReducer(state: InitialStateType, action: ActionType) {
 
     case "TOGGLE_PLAY":
       return { ...state, isPlaying: action.payload.toggle };
+
+    case "TOGGLE_QUIZ_FINISH":
+      return {...state, quizFinished:action.payload.toggle}
 
     case "TOGGLE_LOADER":
       return { ...state, isLoading: action.payload.toggle };

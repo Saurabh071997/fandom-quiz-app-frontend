@@ -1,0 +1,40 @@
+.page-block{
+    display: flex;
+    flex-direction: column;
+    margin:1rem auto;
+}
+
+.page-title{
+    font-size:3rem;
+    font-weight: bold;
+    margin: 2rem auto;
+    text-align: center;
+    color:#0284C7;
+
+}
+  
+.align-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+  
+.page-nav-txt{
+    font-size:1.25rem;
+    /* color:#38BDF8; */
+    color:#0284C7;
+    margin: 1rem auto;
+}
+  
+.page-nav-link{
+    /* color:#38BDF8; */
+    color:#0284C7;
+    margin-left: 0.5rem;
+}
+  
+.page-nav-link:hover{
+    text-decoration: underline;
+}
+
+
+  

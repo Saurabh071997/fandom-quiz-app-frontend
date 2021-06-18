@@ -1,16 +1,16 @@
-import { Route } from "react-router-dom";
-import { useQuizData } from "../context/QuizDataProvider";
-import { Home } from "./Home";
+import { Route, Navigate } from "react-router-dom";
+import {tokenType} from '../utils/Quiz.type'
+
 
 export const PrivateRoute = ({ path, ...props }: any) => {
-  const {
-    state: { isPlaying }
-  } = useQuizData();
 
-  return isPlaying ? (
+  let token = localStorage?.getItem('accessToken')
+  let savedToken:tokenType = token && JSON.parse(token)
+
+  return savedToken?.accessToken ? (
     <Route {...props} path={path} />
   ) : (
-    <Route path="/" element={<Home />} />
-    // <Navigate state={{ from: path }} replace to="/" />
+    // <Route path="/" element={<Home />} />
+    <Navigate state={{ from: path }} replace to="/login" />
   );
 };

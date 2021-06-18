@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useQuizData } from "../context/QuizDataProvider";
 import { Loader } from "./Loader";
+import { useStyles } from "../utils/quizStyle";
 
 export const LeaderBoard = () => {
   const {
     state: { leaderBoardList, categoryList, isLoading}
   } = useQuizData();
+
+  const classes = useStyles();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,8 +22,7 @@ export const LeaderBoard = () => {
     <div>
       <Typography
         align="center"
-        variant="h4"
-        style={{ margin: "1rem auto" }}
+        className={classes.pageTitle}
         gutterBottom
       >
         LeaderBoard
@@ -50,7 +52,7 @@ export const LeaderBoard = () => {
           {sortedList?.map((item) => {
             let category = categoryList?.find(
                 // eslint-disable-next-line
-              ({ _id }) => _id === item?.quizplayed
+              ({ _id }) => _id === item?.__quizId
             );
             return (
               <div key={item?._id}>
@@ -68,7 +70,7 @@ export const LeaderBoard = () => {
                     <Typography
                       style={{ fontSize: "1.5rem", color: "#075985" }}
                     >
-                      {item?.username}
+                      {item?.useravatar}
                     </Typography>
                     <Typography align="center" style={{ fontSize: "1.15rem" }}>
                       Quiz played : {category?.name}

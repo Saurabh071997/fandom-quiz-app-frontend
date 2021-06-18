@@ -4,12 +4,17 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useQuizData } from "../../context/QuizDataProvider";
 import { Loader } from "../Loader";
+import {useAuth} from '../../context/AuthProvider'
 
 export const QuizResult = () => {
   const classes = useStyles();
   const {
-    state: { userName, score, quizQuestionList, userAnswerList , isLoading}
+    state: {  score, quizQuestionList, userAnswerList , isLoading}
   } = useQuizData();
+
+  const{authState:{currentUser}} = useAuth();
+
+  // let userName = ""; 
 
   const TOTAL_SCORE = userAnswerList?.length * 5;
 
@@ -35,13 +40,31 @@ export const QuizResult = () => {
       </Typography>
 
       <Typography align="center" variant="h5" gutterBottom>
-        Player: {userName}
+        {/* Player: {userName} */}
+        Player: {currentUser?.avatarname}
       </Typography>
 
       <Typography align="center" gutterBottom>
         <span className={classes.score}> {score}</span>{" "}
         <span className={classes.scoreTotal}>&#47; {TOTAL_SCORE} </span>
       </Typography>
+
+      <div
+        style={{
+          margin: "1rem auto",
+          textAlign: "center"
+        }}
+      >
+        <Link to="/userscores" style={{ textDecoration: "none" }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            style={{ margin: "0rem auto" }}
+          >
+            View My Scores
+          </Button>
+        </Link>
+      </div>
 
       <div
         style={{

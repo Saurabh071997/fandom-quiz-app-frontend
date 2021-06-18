@@ -62,6 +62,7 @@ footer {
   display: flex;
   flex-direction: column;
   z-index: 20;
+
 }
 
 .modal-sub-div {
@@ -70,9 +71,10 @@ footer {
   margin: 0rem auto;
   padding: 1rem;
   background-color: #e5e7eb;
+  box-shadow:0px 0px 10px 4px #D1D5DB;
 }
 
-.btn-close {
+/* .btn-close {
   border: none;
   outline: none;
   font-size: 1rem;
@@ -91,90 +93,8 @@ footer {
   cursor: pointer;
   color: #e5e7eb;
   background-color: #171717;
-}
+} */
 
-.gooey {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 142px;
-  height: 40px;
-  margin: -20px 0 0 -71px;
-  background: rgb(245, 240, 240);
-  filter: contrast(20);
-}
-
-.gooey .dot {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 12px;
-  left: 15px;
-  filter: blur(4px);
-  background: #0c4a6e;
-  border-radius: 50%;
-  transform: translateX(0);
-  animation: dot 2.8s infinite;
-}
-
-.gooey .dots {
-  transform: translateX(0);
-  margin-top: 12px;
-  margin-left: 31px;
-  animation: dots 2.8s infinite;
-}
-
-.gooey .dots span {
-  display: block;
-  float: left;
-  width: 16px;
-  height: 16px;
-  margin-left: 16px;
-  filter: blur(4px);
-  background: #0c4a6e;
-  border-radius: 50%;
-}
-
-@-moz-keyframes dot {
-  50% {
-    transform: translateX(96px);
-  }
-}
-@-webkit-keyframes dot {
-  50% {
-    transform: translateX(96px);
-  }
-}
-@-o-keyframes dot {
-  50% {
-    transform: translateX(96px);
-  }
-}
-@keyframes dot {
-  50% {
-    transform: translateX(96px);
-  }
-}
-@-moz-keyframes dots {
-  50% {
-    transform: translateX(-31px);
-  }
-}
-@-webkit-keyframes dots {
-  50% {
-    transform: translateX(-31px);
-  }
-}
-@-o-keyframes dots {
-  50% {
-    transform: translateX(-31px);
-  }
-}
-@keyframes dots {
-  50% {
-    transform: translateX(-31px);
-  }
-}
 
 .graph {
   border-left: 1px solid #71717A;
@@ -183,9 +103,43 @@ footer {
   margin:1rem auto 2rem auto;
 }
 
+.toast-class {
+  width: 97%;
+}
+
+.btn-sign-in {
+  background: transparent;
+  font-size: var(--txt-125);
+  border: 1px solid #F5F5F5;
+  color: #F5F5F5;
+  outline: none;
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  position: relative;
+  /* margin:0rem 0.25rem */
+  /* border-radius: 0.25rem; */
+  /* top: 0.6em; */
+}
+
+.btn-play{
+  font-size:1.25rem;
+  background-color: #22C55E;
+  color:whitesmoke;
+  padding:0.5rem 1.5rem;
+  cursor: pointer;
+  margin:0rem auto;
+  border:none;
+  outline:none;
+}
+
 
 @media screen and (max-width: 600px) {
   .graph{
     width:auto;
+  }
+
+  .btn-sign-in {
+    font-size: var(--txt-115);
+    /* top: 0.4em; */
   }
 }

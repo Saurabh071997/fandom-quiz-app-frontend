@@ -7,8 +7,8 @@ export const useStyles = makeStyles(() => ({
   },
 
   navIcon: {
-    height: "2rem",
-    width: "2rem",
+    height: "1rem",
+    width: "1rem",
     margin: "0rem 0.5rem 0rem 0rem",
     cursor: "pointer"
   },
@@ -19,9 +19,17 @@ export const useStyles = makeStyles(() => ({
     width: "2rem"
   },
 
+  navProfile:{
+    color: "white",
+    height: "2rem",
+    width: "2rem"
+  },
+
   navTitle: {
-    textAlign:"center",
+    // textAlign:"center",
+    marginLeft:"1rem",
     flexGrow: 1,
+    cursor:"pointer"
 
   },
 
@@ -76,7 +84,8 @@ export const useStyles = makeStyles(() => ({
     position: "relative",
     padding: "0rem",
     // backgroundColor: "#0C4A6E",
-    height: "100vh"
+    height: "100vh",
+    textAlign:"center"
   },
 
   quizBgImg: {
@@ -86,14 +95,19 @@ export const useStyles = makeStyles(() => ({
   },
 
   quizSubContainer: {
-    position: "absolute",
-    top: "3rem"
+    // position: "absolute",
+    // top: "3rem"
+    backgroundColor:"#E5E5E5",
+    padding:"1rem",
+    margin:"1.25rem auto",
   },
 
   pageHead: {
-    fontSize: "4rem",
+    fontSize: "3rem",
     fontWeight: "bold",
-    margin: "2rem auto"
+    margin: "2rem auto",
+    // color:"#0284C7",
+    color:"#0369A1"
   },
 
   quizQuestion: {
@@ -197,5 +211,72 @@ export const useStyles = makeStyles(() => ({
     cursor: "pointer",
     width: "100%",
     background: "transparent"
+  },
+
+  credentialsContainer: {
+    display:"flex",
+    flexDirection:"column"
+  },
+
+  pageTitle: {
+    fontSize: "2.5rem",
+    fontWeight: "bold",
+    margin: "2rem auto",
+    textAlign: "center",
+    color:"#0284C7",
+  },
+
+  inputFields: {
+    margin:"0.5rem auto"
+  },
+
+  userAvatar: {
+    fontSize:"1.75rem",
+    margin: "0.5rem auto",
+    color:"#0C4A6E"
+  },
+
+  linkEdit: {
+    fontSize: "1rem",
+    color: "#0284C7",
+    margin: "0.5rem auto",
+    "&:hover" :{
+      cursor:"pointer",
+      textDecoration:"underline"
+    }
+  },
+
+  profileGridItem : {
+    margin:"0.35rem auto",
+    width:"80%",
+    display:"flex",
+    // justifyContent:"space-between",
+    backgroundColor:"#E5E5E5"
+  },
+
+  profileGridText: {
+    fontSize:"1.25rem",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+  },
+
+  profileGridIcon: {
+    height:"1.75rem",
+    width:"1.75rem",
+    marginRight:"1rem",
+    position:"relative",
+    top:"0.1em",
+    backgroundColor:"#BAE6FD",
+    color:"#171717"
+  },
+
+  containerDate: {
+    fontSize:"1.25rem",
+    position:"absolute",
+    top:"-0.7em",
+    background:"white",
+    marginLeft:"0.35rem"
   }
+
 }));

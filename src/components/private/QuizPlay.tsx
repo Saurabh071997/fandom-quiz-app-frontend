@@ -4,8 +4,9 @@ import CheckIcon from "@material-ui/icons/Check";
 import ClearIcon from "@material-ui/icons/Clear";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import {useAuth} from '../../context/AuthProvider'
 import { useQuizData } from "../../context/QuizDataProvider";
-import { Option, LeaderBoardProps} from "../../utils/Quiz.type";
+import { Option, UserScoreProps, LeaderBoardProps} from "../../utils/Quiz.type";
 import { Loader } from "../Loader";
 
 export const QuizPlay = () => {
@@ -16,19 +17,23 @@ export const QuizPlay = () => {
     state: {
       quizQuestionList,
       categoryList,
-      userName,
+      // userName,
       userAnswerList,
       score,
       isLoading
     },
     dispatch,
+    handleUserScoreListUpdate,
     handleLeaderBoardUpdate
   } = useQuizData();
 
-  const TOTAL_QUESTIONS = quizQuestionList?.length;
+  const {authState:{currentUser}} = useAuth()
+
+  // const TOTAL_QUESTIONS = quizQuestionList?.length;
+  const TOTAL_QUESTIONS = 5;
 
 // eslint-disable-next-line
-  const currentCategory = categoryList?.find(({ _id }) => _id == quizId);
+  const currentCategory = categoryList?.find(({ _id }) => _id === quizId);
   const [showExitModal, setShowExitModal] = useState<boolean>(false);
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [isFinished, setIsFinished] = useState<boolean>(false);
@@ -99,16 +104,36 @@ export const QuizPlay = () => {
     setIsAnswered(false);
   };
 
-  const leaderBoardUpdate = () => {
+  const scoreUpdate = () => {
+    let dateString = new Date().toDateString().slice(4,)
+    let userScoreObj: UserScoreProps = {
+      __quizId: quizId,
+      score,
+      dateplayed:dateString
+    }
+    handleUserScoreListUpdate(userScoreObj)
+
     let leaderBoardObj: LeaderBoardProps = {
-      username: userName,
-      quizPlayedId: quizId,
+      useravatar: currentUser?.avatarname!,
+      __quizId: quizId,
       score,
       totalQuestions: TOTAL_QUESTIONS
     };
 
     handleLeaderBoardUpdate(leaderBoardObj);
-  };
+
+  }
+
+  // const leaderBoardUpdate = () => {
+    // let leaderBoardObj: LeaderBoardProps = {
+    //   username: currentUser?.avatarname,
+    //   quizPlayedId: quizId,
+    //   score,
+    //   totalQuestions: TOTAL_QUESTIONS
+    // };
+
+    // handleLeaderBoardUpdate(leaderBoardObj);
+  // };
 
   return isLoading ? <Loader/> :(
     <div style={{ marginBottom: "5rem" }}>
@@ -136,7 +161,8 @@ export const QuizPlay = () => {
               Playing as :
             </Typography>
             <Typography align="right" style={{ fontSize: "1.5rem" }}>
-              {userName}
+              {/* {userName} */}
+              {currentUser?.avatarname}
             </Typography>
           </Grid>
         </Grid>
@@ -144,7 +170,7 @@ export const QuizPlay = () => {
 
         {showExitModal && <ExitModal />}
 
-        {/* {score} */}
+        {score}
 
         <Container maxWidth="sm">
           <Typography gutterBottom className={classes.quizQuestion}>
@@ -196,8 +222,9 @@ export const QuizPlay = () => {
               <button
                 className={classes.btnFinish}
                 onClick={() => {
-                  leaderBoardUpdate();
-                  navigate("/result");
+                  dispatch({type:"TOGGLE_PLAY", payload:{toggle:false}})
+                  dispatch({type:"TOGGLE_QUIZ_FINISH", payload:{toggle:true}})
+                  scoreUpdate()
                 }}
               >
                 FINISH
