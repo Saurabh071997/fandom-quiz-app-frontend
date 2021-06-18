@@ -22,15 +22,12 @@ function setupAuthExceptionHandler(
   toastDispatch: any
 ) {
 
-  // const {toastDispatch} = useToast();
   const UNAUTHORIZED = 401;
   const FORBIDDEN = 403;
   axios.interceptors.response.use(
     (response) => response,
     (error) => {
-      console.log("exception handler set")
       if (error?.response?.status === UNAUTHORIZED) {
-        console.log("in unauthorised line 30")
         toastDispatch({
           type: "TOGGLE_TOAST",
           payload: { toggle: true, message: "Unauthorised Access" },
@@ -38,7 +35,6 @@ function setupAuthExceptionHandler(
         logoutUser();
         navigate("/login");
       } else if (error?.response?.status === FORBIDDEN) {
-        console.log("in forbidden line 38")
         toastDispatch({
           type: "TOGGLE_TOAST",
           payload: { toggle: true, message: "User Session Expired" },
@@ -54,7 +50,7 @@ function setupAuthExceptionHandler(
 
 function setupAuthHeaderForServiceCalls(token: string | null) {
   if (token) {
-    console.log("headers are set");
+    // console.log("headers are set");
     delete axios.defaults.headers.common["Authorization"];
     return (axios.defaults.headers.common["Authorization"] = `Bearer ${token}`);
   }
@@ -79,7 +75,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     savedToken?.accessToken && getUserProfileData();
-    // authState?.accessToken &&
       setupAuthExceptionHandler(logoutUser, navigate, toastDispatch);
     // eslint-disable-next-line
   }, []);
@@ -87,7 +82,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const getUserDetails = async (): Promise<UserResponse | ServerError> => {
     try {
       let response = await axios.get(
-        `https://fandom-quiz-backend.saurabhkamboj.repl.co/user/details`
+        `https://fandom-quiz.herokuapp.com/user/details`
       );
       return response.data;
     } catch (err) {
@@ -116,7 +111,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   ): Promise<UserResponse | ServerError> => {
     try {
       let response = await axios.post(
-        `https://fandom-quiz-backend.saurabhkamboj.repl.co/user/details`,
+        `https://fandom-quiz.herokuapp.com/user/details`,
         {
           avatarname: userProfileObj?.avatarname,
           firstname: userProfileObj?.firstname,
@@ -162,7 +157,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }: UserSignupProps) {
     try {
       let response = await axios.post(
-        `https://fandom-quiz-backend.saurabhkamboj.repl.co/signup`,
+        `https://fandom-quiz.herokuapp.com/signup`,
         {
           avatarname,
           email,
@@ -201,7 +196,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   async function handleUserLogin({ usermail, userpassword }: UserLoginProps) {
     try {
       let response = await axios.post(
-        `https://fandom-quiz-backend.saurabhkamboj.repl.co/login`,
+        `https://fandom-quiz.herokuapp.com/login`,
         {
           usermail,
           userpassword,
