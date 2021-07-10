@@ -62,7 +62,7 @@ export const UserProfile = () => {
 
         <hr />
 
-        <Container maxWidth="xs">
+        <Container maxWidth="xs" style={{margin:"0rem auto"}}>
           <Grid container direction="column">
             <Grid item className={classes.profileGridItem}>
               <PersonOutlinedIcon className={classes.profileGridIcon} />

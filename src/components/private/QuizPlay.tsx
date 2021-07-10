@@ -29,8 +29,8 @@ export const QuizPlay = () => {
 
   const {authState:{currentUser}} = useAuth()
 
-  // const TOTAL_QUESTIONS = quizQuestionList?.length;
-  const TOTAL_QUESTIONS = 5;
+  const TOTAL_QUESTIONS = quizQuestionList?.length;
+  // const TOTAL_QUESTIONS = 5;
 
 // eslint-disable-next-line
   const currentCategory = categoryList?.find(({ _id }) => _id === quizId);
@@ -170,7 +170,7 @@ export const QuizPlay = () => {
 
         {showExitModal && <ExitModal />}
 
-        {score}
+        {/* {score} */}
 
         <Container maxWidth="sm">
           <Typography gutterBottom className={classes.quizQuestion}>

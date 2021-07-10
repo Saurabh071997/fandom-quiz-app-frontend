@@ -27,30 +27,31 @@ export const LoginPage = () => {
         </Typography>
 
         <Container maxWidth="sm" className={classes.credentialsContainer}>
-          <TextField
-            // id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            className={classes.inputFields}
-            style={{ width: width < 600 ? "100%" : "60%" }}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-
-          <TextField
-            // id="outlined-basic"
-            label="Password"
-            type="password"
-            variant="outlined"
-            className={classes.inputFields}
-            style={{ width: width < 600 ? "100%" : "60%" }}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-
           <div className="align-center">
+            <TextField
+              // id="outlined-basic"
+              label="Email"
+              variant="outlined"
+              className={classes.inputFields}
+              style={{ width: width < 600 ? "100%" : "60%" }}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+
+            <TextField
+              // id="outlined-basic"
+              label="Password"
+              type="password"
+              variant="outlined"
+              className={classes.inputFields}
+              style={{ width: width < 600 ? "100%" : "60%" }}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+
+            {/* <div className="align-center"> */}
             <div className="page-nav-txt">
               New User?
               <Link to="/signup" style={{ textDecoration: "none" }}>
