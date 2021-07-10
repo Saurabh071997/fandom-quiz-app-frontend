@@ -32,8 +32,8 @@ export const LoginPage = () => {
               // id="outlined-basic"
               label="Email"
               variant="outlined"
-              className={classes.inputFields}
-              style={{ width: width < 600 ? "100%" : "60%" }}
+              // className={classes.inputFields}
+              style={{ width: width < 600 ? "100%" : "60%" , margin:"0.5rem auto"}}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -44,8 +44,8 @@ export const LoginPage = () => {
               label="Password"
               type="password"
               variant="outlined"
-              className={classes.inputFields}
-              style={{ width: width < 600 ? "100%" : "60%" }}
+              // className={classes.inputFields}
+              style={{ width: width < 600 ? "100%" : "60%", margin:"0.5rem auto" }}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}

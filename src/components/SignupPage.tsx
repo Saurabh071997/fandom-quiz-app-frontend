@@ -58,8 +58,8 @@ export const SignupPage = () => {
           // id="outlined-basic"
           label="Avatar Name"
           variant="outlined"
-          className={classes.inputFields}
-          style={{width: width<600 ? "100%" : "60%"}}
+          // className={classes.inputFields}
+          style={{width: width<600 ? "100%" : "60%", margin:"0.5rem auto"}}
           onChange={(e) => {
             setAvatarName(e.target.value);
             setError(null);
@@ -73,8 +73,8 @@ export const SignupPage = () => {
           // id="outlined-basic"
           label="Email"
           variant="outlined"
-          className={classes.inputFields}
-          style={{width: width<600 ? "100%" : "60%"}}
+          // className={classes.inputFields}
+          style={{width: width<600 ? "100%" : "60%", margin:"0.5rem auto"}}
           onChange={(e) => {
             setEmail(e.target.value);
             setError(null);
@@ -89,8 +89,8 @@ export const SignupPage = () => {
           label="Password"
           type="password"
           variant="outlined"
-          className={classes.inputFields}
-          style={{width: width<600 ? "100%" : "60%"}}
+          // className={classes.inputFields}
+          style={{width: width<600 ? "100%" : "60%", margin:"0.5rem auto"}}
           onChange={(e) => {
             setPassword(e.target.value);
             setError(null);
@@ -102,8 +102,8 @@ export const SignupPage = () => {
           label="Confirm Password"
           type="password"
           variant="outlined"
-          className={classes.inputFields}
-          style={{width: width<600 ? "100%" : "60%"}}
+          // className={classes.inputFields}
+          style={{width: width<600 ? "100%" : "60%", margin:"0.5rem auto"}}
           onChange={(e) => {
             setConfirmPassword(e.target.value);
             setError(null);
