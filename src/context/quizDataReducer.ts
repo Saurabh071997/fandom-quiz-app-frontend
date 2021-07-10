@@ -29,17 +29,11 @@ export function quizDataReducer(state: InitialStateType, action: ActionType) {
     case "SET_CATEGORY_LIST":
       return { ...state, categoryList: action.payload.categoryList };
 
-    // case "SELECT_CATEGORY":
-    //   return { ...state, selectedCategory: action.payload.category };
-
     case "SET_QUESTION_LIST":
       return { ...state, quizQuestionList: action.payload.questionList };
     
     case "SET_USER_SCORE_LIST":
       return {...state, userScoreList:action.payload.scorelist}
-
-    // case "SET_USERNAME":
-    //   return { ...state, userName: action.payload.value };
 
     case "SET_LEADER_BOARD_LIST":
       return { ...state, leaderBoardList: action.payload.leaderBoardList };

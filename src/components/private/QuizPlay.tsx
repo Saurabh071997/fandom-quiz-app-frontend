@@ -124,16 +124,6 @@ export const QuizPlay = () => {
 
   }
 
-  // const leaderBoardUpdate = () => {
-    // let leaderBoardObj: LeaderBoardProps = {
-    //   username: currentUser?.avatarname,
-    //   quizPlayedId: quizId,
-    //   score,
-    //   totalQuestions: TOTAL_QUESTIONS
-    // };
-
-    // handleLeaderBoardUpdate(leaderBoardObj);
-  // };
 
   return isLoading ? <Loader/> :(
     <div style={{ marginBottom: "5rem" }}>

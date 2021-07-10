@@ -1,11 +1,11 @@
 import { Typography, Container, TextField, Button } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import './SignupPage.css'
+import "./SignupPage.css";
 import { useStyles } from "../utils/quizStyle";
 import { SignupErrorTypes } from "../utils/Quiz.type";
-import {useAuth} from '../context/AuthProvider'
-import {useWindowSize} from '../context/useWindowSize'
+import { useAuth } from "../context/AuthProvider";
+import { useWindowSize } from "../context/useWindowSize";
 
 type ErrorMessage = {
   message: string;
@@ -25,7 +25,7 @@ export const ShowErrorMessage = ({ message }: ErrorMessage) => {
 export const SignupPage = () => {
   const classes = useStyles();
 
-  const{handleUserSignup} = useAuth()
+  const { handleUserSignup } = useAuth();
 
   const [, width] = useWindowSize();
 
@@ -53,75 +53,87 @@ export const SignupPage = () => {
       </Typography>
 
       <Container maxWidth="sm" className={classes.credentialsContainer}>
-
-        <TextField
-          // id="outlined-basic"
-          label="Avatar Name"
-          variant="outlined"
-          // className={classes.inputFields}
-          style={{width: width<600 ? "100%" : "60%", margin:"0.5rem auto"}}
-          onChange={(e) => {
-            setAvatarName(e.target.value);
-            setError(null);
-          }}
-        />
-        {error === errorTypes.avatarNameFormatError && (
-          <ShowErrorMessage message="Avatar name can only be alpha numeric with @ ,_ ,# and $ allowed" />
-        )}
-
-        <TextField
-          // id="outlined-basic"
-          label="Email"
-          variant="outlined"
-          // className={classes.inputFields}
-          style={{width: width<600 ? "100%" : "60%", margin:"0.5rem auto"}}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setError(null);
-          }}
-        />
-        {error === errorTypes.emailFormatError && (
-          <ShowErrorMessage message="Email must be of type something@something.com" />
-        )}
-
-        <TextField
-          // id="outlined-basic"
-          label="Password"
-          type="password"
-          variant="outlined"
-          // className={classes.inputFields}
-          style={{width: width<600 ? "100%" : "60%", margin:"0.5rem auto"}}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setError(null);
-          }}
-        />
-
-        <TextField
-          // id="outlined-basic"
-          label="Confirm Password"
-          type="password"
-          variant="outlined"
-          // className={classes.inputFields}
-          style={{width: width<600 ? "100%" : "60%", margin:"0.5rem auto"}}
-          onChange={(e) => {
-            setConfirmPassword(e.target.value);
-            setError(null);
-          }}
-        />
-
-        {error === errorTypes.passwordMismatchError && (
-          <ShowErrorMessage message="Passwords Failed to Match" />
-        )}
-
-        {error === errorTypes.passwordLengthError && (
-          <ShowErrorMessage message="Password length must be more than 8 characters" />
-        )}
-
         <div className="align-center">
+          <TextField
+            // id="outlined-basic"
+            label="Avatar Name"
+            variant="outlined"
+            // className={classes.inputFields}
+            style={{
+              width: width < 600 ? "100%" : "60%",
+              margin: "0.5rem auto",
+            }}
+            onChange={(e) => {
+              setAvatarName(e.target.value);
+              setError(null);
+            }}
+          />
+          {error === errorTypes.avatarNameFormatError && (
+            <ShowErrorMessage message="Avatar name can only be alpha numeric with @ ,_ ,# and $ allowed" />
+          )}
+
+          <TextField
+            // id="outlined-basic"
+            label="Email"
+            variant="outlined"
+            // className={classes.inputFields}
+            style={{
+              width: width < 600 ? "100%" : "60%",
+              margin: "0.5rem auto",
+            }}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError(null);
+            }}
+          />
+          {error === errorTypes.emailFormatError && (
+            <ShowErrorMessage message="Email must be of type something@something.com" />
+          )}
+
+          <TextField
+            // id="outlined-basic"
+            label="Password"
+            type="password"
+            variant="outlined"
+            // className={classes.inputFields}
+            style={{
+              width: width < 600 ? "100%" : "60%",
+              margin: "0.5rem auto",
+            }}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setError(null);
+            }}
+          />
+
+          <TextField
+            // id="outlined-basic"
+            label="Confirm Password"
+            type="password"
+            variant="outlined"
+            // className={classes.inputFields}
+            style={{
+              width: width < 600 ? "100%" : "60%",
+              margin: "0.5rem auto",
+            }}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+              setError(null);
+            }}
+          />
+
+          {error === errorTypes.passwordMismatchError && (
+            <ShowErrorMessage message="Passwords Failed to Match" />
+          )}
+
+          {error === errorTypes.passwordLengthError && (
+            <ShowErrorMessage message="Password length must be more than 8 characters" />
+          )}
+
+          {/* <div className="align-center"> */}
           <div className="page-nav-txt">
             Already a User?
-            <Link to="/login" style={{textDecoration:"none"}}>
+            <Link to="/login" style={{ textDecoration: "none" }}>
               {" "}
               <span className="page-nav-link">Login </span>{" "}
             </Link>
@@ -131,7 +143,7 @@ export const SignupPage = () => {
             <Button
               variant="contained"
               color="primary"
-              style={{fontSize:"1.25rem"}}
+              style={{ fontSize: "1.25rem" }}
               onClick={() => {
                 if (email && avatarname) {
                   let regex =
@@ -151,7 +163,7 @@ export const SignupPage = () => {
                   ) {
                     setError(errorTypes.passwordLengthError);
                   } else {
-                    handleUserSignup({avatarname, email, password})
+                    handleUserSignup({ avatarname, email, password });
                   }
                 }
               }}
