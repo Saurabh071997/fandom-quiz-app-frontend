@@ -135,7 +135,11 @@ export const EditUserProfile = () => {
             <Grid
               item
               className={classes.profileGridItem}
-              style={{ cursor: "pointer" }}
+              style={{
+                cursor: "pointer",
+                margin: "0.35rem auto",
+                width: width <= 600 ? "100%" : "60%",
+              }}
             >
               <MailIcon className={classes.profileGridIcon} />
               <Typography className={classes.profileGridText}>
@@ -149,9 +153,9 @@ export const EditUserProfile = () => {
           variant="contained"
           color="primary"
           style={{
-            margin: "1rem auto",
+            margin: "2rem auto",
             fontSize: "1.15rem",
-            width: width <= 600 ? "100%" : "60%",
+            width: width <= 600 ? "90%" : "50%",
           }}
           onClick={() => {
             let regex = /^[a-zA-Z0-9_@#$&]+$/;

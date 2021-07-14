@@ -167,7 +167,7 @@ export const SignupPage = () => {
             <Button
               variant="contained"
               color="primary"
-              style={{ fontSize: "1.25rem", width:"200px" }}
+              style={{ fontSize: "1.15rem", width:"200px" }}
               onClick={validateSignup}
             >
               Signup

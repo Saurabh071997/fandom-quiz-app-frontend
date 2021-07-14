@@ -67,7 +67,7 @@ export const LoginPage = () => {
                 variant="contained"
                 color="primary"
                 style={{
-                  fontSize: "1.25rem",
+                  fontSize: "1.15rem",
                   width: "200px"
                 }}
                 onClick={() => {

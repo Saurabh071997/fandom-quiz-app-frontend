@@ -65,7 +65,11 @@ export const UserProfile = () => {
         <div>
           <Container maxWidth="xs" style={{ margin: "0rem auto" }}>
             <Grid container direction="column">
-              <Grid item className={classes.profileGridItem}>
+              <Grid
+                item
+                className={classes.profileGridItem}
+                style={{ margin: "0.35rem auto" }}
+              >
                 <PersonOutlinedIcon className={classes.profileGridIcon} />
                 <Typography className={classes.profileGridText}>
                   {currentUser?.firstname ? (
@@ -82,7 +86,11 @@ export const UserProfile = () => {
                 </Typography>
               </Grid>
 
-              <Grid item className={classes.profileGridItem}>
+              <Grid
+                item
+                className={classes.profileGridItem}
+                style={{ margin: "0.35rem auto" }}
+              >
                 <CallIcon className={classes.profileGridIcon} />
                 <Typography className={classes.profileGridText}>
                   {currentUser?.contact ? (
@@ -93,7 +101,11 @@ export const UserProfile = () => {
                 </Typography>
               </Grid>
 
-              <Grid item className={classes.profileGridItem}>
+              <Grid
+                item
+                className={classes.profileGridItem}
+                style={{ margin: "0.35rem auto" }}
+              >
                 <MailIcon className={classes.profileGridIcon} />
                 <Typography className={classes.profileGridText}>
                   {currentUser?.email}
@@ -103,7 +115,7 @@ export const UserProfile = () => {
               <Grid
                 item
                 className={classes.profileGridItem}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", margin: "0.35rem auto" }}
                 onClick={() => {
                   navigate("/userscores");
                 }}
