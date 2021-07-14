@@ -46,6 +46,30 @@ export const SignupPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const validateSignup = () => {
+    if (email && avatarname) {
+      let regex =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      let avatarregex = /^[a-zA-Z0-9_@#$&]+$/;
+      if (!regex.test(email)) {
+        setError(errorTypes.emailFormatError);
+      } else if (!avatarregex.test(avatarname)) {
+        setError(errorTypes.avatarNameFormatError);
+      } else if (password !== confirmPassword) {
+        setError(errorTypes.passwordMismatchError);
+      } else if (
+        password &&
+        password.length < 8 &&
+        confirmPassword &&
+        confirmPassword?.length < 8
+      ) {
+        setError(errorTypes.passwordLengthError);
+      } else {
+        handleUserSignup({ avatarname, email, password });
+      }
+    }
+  };
+
   return (
     <div className="page-block">
       <Typography align="center" gutterBottom className={classes.pageTitle}>
@@ -60,7 +84,7 @@ export const SignupPage = () => {
             variant="outlined"
             // className={classes.inputFields}
             style={{
-              width: width < 600 ? "100%" : "60%",
+              width: width <= 600 ? "100%" : "60%",
               margin: "0.5rem auto",
             }}
             onChange={(e) => {
@@ -78,7 +102,7 @@ export const SignupPage = () => {
             variant="outlined"
             // className={classes.inputFields}
             style={{
-              width: width < 600 ? "100%" : "60%",
+              width: width <= 600 ? "100%" : "60%",
               margin: "0.5rem auto",
             }}
             onChange={(e) => {
@@ -97,7 +121,7 @@ export const SignupPage = () => {
             variant="outlined"
             // className={classes.inputFields}
             style={{
-              width: width < 600 ? "100%" : "60%",
+              width: width <= 600 ? "100%" : "60%",
               margin: "0.5rem auto",
             }}
             onChange={(e) => {
@@ -113,7 +137,7 @@ export const SignupPage = () => {
             variant="outlined"
             // className={classes.inputFields}
             style={{
-              width: width < 600 ? "100%" : "60%",
+              width: width <= 600 ? "100%" : "60%",
               margin: "0.5rem auto",
             }}
             onChange={(e) => {
@@ -143,30 +167,8 @@ export const SignupPage = () => {
             <Button
               variant="contained"
               color="primary"
-              style={{ fontSize: "1.25rem" }}
-              onClick={() => {
-                if (email && avatarname) {
-                  let regex =
-                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                  let avatarregex = /^[a-zA-Z0-9_@#$&]+$/;
-                  if (!regex.test(email)) {
-                    setError(errorTypes.emailFormatError);
-                  } else if (!avatarregex.test(avatarname)) {
-                    setError(errorTypes.avatarNameFormatError);
-                  } else if (password !== confirmPassword) {
-                    setError(errorTypes.passwordMismatchError);
-                  } else if (
-                    password &&
-                    password.length < 8 &&
-                    confirmPassword &&
-                    confirmPassword?.length < 8
-                  ) {
-                    setError(errorTypes.passwordLengthError);
-                  } else {
-                    handleUserSignup({ avatarname, email, password });
-                  }
-                }
-              }}
+              style={{ fontSize: "1.25rem", width:"200px" }}
+              onClick={validateSignup}
             >
               Signup
             </Button>

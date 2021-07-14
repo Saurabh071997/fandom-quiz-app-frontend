@@ -53,10 +53,10 @@ export const Home = () => {
             <div style={{ textAlign: "center" }}>
               <button
                 style={{
-                  color: "white",
-                  backgroundColor: "black",
+                  color: "whitesmoke",
+                  backgroundColor: "#262626",
                   fontSize: "1.15rem",
-                  padding: "0.5rem 1rem",
+                  padding: "0.35rem 3rem",
                   margin: "0rem auto",
                   border: "none",
                   outline: "none",

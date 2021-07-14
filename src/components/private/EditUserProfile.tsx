@@ -60,7 +60,7 @@ export const EditUserProfile = () => {
                 label="Avatar Name"
                 // variant="outlined"
                 className={classes.inputFields}
-                style={{ width: width < 600 ? "100%" : "60%" }}
+                style={{ width: width <= 600 ? "100%" : "60%" }}
                 defaultValue={currentUser?.avatarname}
                 onChange={(e) => {
                   setProfileState((profileState) => ({
@@ -89,7 +89,7 @@ export const EditUserProfile = () => {
                 label="First Name"
                 // variant="outlined"
                 className={classes.inputFields}
-                style={{ width: width < 600 ? "100%" : "60%" }}
+                style={{ width: width <= 600 ? "100%" : "60%" }}
                 defaultValue={currentUser?.firstname}
                 onChange={(e) => {
                   setProfileState((profileState) => ({
@@ -105,7 +105,7 @@ export const EditUserProfile = () => {
                 label="Last Name"
                 // variant="outlined"
                 className={classes.inputFields}
-                style={{ width: width < 600 ? "100%" : "60%" }}
+                style={{ width: width <= 600 ? "100%" : "60%" }}
                 defaultValue={currentUser?.lastname}
                 onChange={(e) => {
                   setProfileState((profileState) => ({
@@ -121,7 +121,7 @@ export const EditUserProfile = () => {
                 label="Contact"
                 // variant="outlined"
                 className={classes.inputFields}
-                style={{ width: width < 600 ? "100%" : "60%" }}
+                style={{ width: width <= 600 ? "100%" : "60%" }}
                 defaultValue={currentUser?.contact}
                 onChange={(e) => {
                   setProfileState((profileState) => ({
@@ -151,7 +151,7 @@ export const EditUserProfile = () => {
           style={{
             margin: "1rem auto",
             fontSize: "1.15rem",
-            width: width < 600 ? "100%" : "60%",
+            width: width <= 600 ? "100%" : "60%",
           }}
           onClick={() => {
             let regex = /^[a-zA-Z0-9_@#$&]+$/;

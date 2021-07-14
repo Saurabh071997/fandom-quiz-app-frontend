@@ -29,23 +29,25 @@ export const LoginPage = () => {
         <Container maxWidth="sm" className={classes.credentialsContainer}>
           <div className="align-center">
             <TextField
-              // id="outlined-basic"
               label="Email"
               variant="outlined"
-              // className={classes.inputFields}
-              style={{ width: width < 600 ? "100%" : "60%" , margin:"0.5rem auto"}}
+              style={{
+                width: width <= 600 ? "100%" : "60%",
+                margin: "0.5rem auto",
+              }}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
             />
 
             <TextField
-              // id="outlined-basic"
               label="Password"
               type="password"
               variant="outlined"
-              // className={classes.inputFields}
-              style={{ width: width < 600 ? "100%" : "60%", margin:"0.5rem auto" }}
+              style={{
+                width: width <= 600 ? "100%" : "60%",
+                margin: "0.5rem auto",
+              }}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -64,7 +66,10 @@ export const LoginPage = () => {
               <Button
                 variant="contained"
                 color="primary"
-                style={{ fontSize: "1.25rem" }}
+                style={{
+                  fontSize: "1.25rem",
+                  width: "200px"
+                }}
                 onClick={() => {
                   handleUserLogin({ usermail: email, userpassword: password });
                 }}

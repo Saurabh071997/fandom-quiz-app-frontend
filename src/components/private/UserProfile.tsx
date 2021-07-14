@@ -62,58 +62,60 @@ export const UserProfile = () => {
 
         <hr />
 
-        <Container maxWidth="xs" style={{margin:"0rem auto"}}>
-          <Grid container direction="column">
-            <Grid item className={classes.profileGridItem}>
-              <PersonOutlinedIcon className={classes.profileGridIcon} />
-              <Typography className={classes.profileGridText}>
-                {currentUser?.firstname ? (
-                  currentUser?.firstname
-                ) : (
-                  <span className="txt-empty"> -- </span>
-                )}
+        <div>
+          <Container maxWidth="xs" style={{ margin: "0rem auto" }}>
+            <Grid container direction="column">
+              <Grid item className={classes.profileGridItem}>
+                <PersonOutlinedIcon className={classes.profileGridIcon} />
+                <Typography className={classes.profileGridText}>
+                  {currentUser?.firstname ? (
+                    currentUser?.firstname
+                  ) : (
+                    <span className="txt-empty"> -- </span>
+                  )}
 
-                {currentUser?.lastname ? (
-                  " " + currentUser?.lastname
-                ) : (
-                  <span className="txt-empty"> -- </span>
-                )}
-              </Typography>
-            </Grid>
+                  {currentUser?.lastname ? (
+                    " " + currentUser?.lastname
+                  ) : (
+                    <span className="txt-empty"> -- </span>
+                  )}
+                </Typography>
+              </Grid>
 
-            <Grid item className={classes.profileGridItem}>
-              <CallIcon className={classes.profileGridIcon} />
-              <Typography className={classes.profileGridText}>
-                {currentUser?.contact ? (
-                  currentUser?.contact
-                ) : (
-                  <span className="txt-empty"> -- </span>
-                )}
-              </Typography>
-            </Grid>
+              <Grid item className={classes.profileGridItem}>
+                <CallIcon className={classes.profileGridIcon} />
+                <Typography className={classes.profileGridText}>
+                  {currentUser?.contact ? (
+                    currentUser?.contact
+                  ) : (
+                    <span className="txt-empty"> -- </span>
+                  )}
+                </Typography>
+              </Grid>
 
-            <Grid item className={classes.profileGridItem}>
-              <MailIcon className={classes.profileGridIcon} />
-              <Typography className={classes.profileGridText}>
-                {currentUser?.email}
-              </Typography>
-            </Grid>
+              <Grid item className={classes.profileGridItem}>
+                <MailIcon className={classes.profileGridIcon} />
+                <Typography className={classes.profileGridText}>
+                  {currentUser?.email}
+                </Typography>
+              </Grid>
 
-            <Grid
-              item
-              className={classes.profileGridItem}
-              style={{cursor:"pointer"}}
-              onClick={() => {
-                navigate("/userscores");
-              }}
-            >
-              <BarChartIcon className={classes.profileGridIcon} />
-              <Typography className={classes.profileGridText}>
-                My Scores
-              </Typography>
+              <Grid
+                item
+                className={classes.profileGridItem}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  navigate("/userscores");
+                }}
+              >
+                <BarChartIcon className={classes.profileGridIcon} />
+                <Typography className={classes.profileGridText}>
+                  My Scores
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
+          </Container>
+        </div>
 
         <button
           className="btn-logout"
