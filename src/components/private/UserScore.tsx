@@ -52,7 +52,6 @@ export const UserScore = () => {
     // eslint-disable-next-line
   }, []);
 
-
   let resultlist: ScoreDisplayList[] = [];
 
   if (userScoreList.length > 0) {
@@ -108,13 +107,18 @@ export const UserScore = () => {
                           justify="space-between"
                           spacing={1}
                           style={{ backgroundColor: bgcolor }}
+                          key={idx}
                         >
                           <Grid item>
-                            <Typography style={{fontSize:"1.25rem"}}>{category?.name}</Typography>
+                            <Typography style={{ fontSize: "1.25rem" }}>
+                              {category?.name}
+                            </Typography>
                           </Grid>
 
                           <Grid item>
-                            <Typography style={{fontSize:"1.25rem"}}>{quizObj?.score}</Typography>
+                            <Typography style={{ fontSize: "1.25rem" }}>
+                              {quizObj?.score}
+                            </Typography>
                           </Grid>
                         </Grid>
                       );

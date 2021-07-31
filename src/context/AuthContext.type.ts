@@ -3,6 +3,7 @@ import {UserType, UserSignupProps, UserLoginProps, UserProps} from '../utils/Qui
 export type AuthInitialState = {
     currentUser: UserType | null;
     accessToken: string | null;
+    authLoader: boolean;
 }
 
 export type AuthContextType = {

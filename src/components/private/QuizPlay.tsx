@@ -45,6 +45,8 @@ export const QuizPlay = () => {
 
   const ExitModal = () => {
     return (
+      <>
+      <div className="overlay">
       <div className="modal-div">
         <div className="modal-sub-div">
           <Typography variant="h6" gutterBottom>
@@ -76,6 +78,8 @@ export const QuizPlay = () => {
           </Grid>
         </div>
       </div>
+      </div>
+      </>
     );
   };
 

@@ -11,6 +11,7 @@ import {
 } from "../utils/Quiz.type";
 import { AuthContextType, AuthInitialState } from "./AuthContext.type";
 import { useToast } from "./ToastProvider";
+import {API_URL} from './config'
 
 export const AuthContext = createContext<AuthContextType>(
   {} as AuthContextType
@@ -50,11 +51,11 @@ function setupAuthExceptionHandler(
 
 function setupAuthHeaderForServiceCalls(token: string | null) {
   if (token) {
-    // console.log("headers are set");
+
     delete axios.defaults.headers.common["Authorization"];
     return (axios.defaults.headers.common["Authorization"] = `Bearer ${token}`);
   }
-  // console.log("deleting token now");
+
   delete axios.defaults.headers.common["Authorization"];
 }
 
@@ -68,6 +69,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [authState, setAuthState] = useState<AuthInitialState>({
     currentUser: null,
     accessToken: savedToken?.accessToken,
+    authLoader:false
   });
 
   const { toastDispatch } = useToast();
@@ -82,7 +84,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const getUserDetails = async (): Promise<UserResponse | ServerError> => {
     try {
       let response = await axios.get(
-        `https://fandom-quiz.herokuapp.com/user/details`
+        `${API_URL}/user/details`
       );
       return response.data;
     } catch (err) {
@@ -111,7 +113,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   ): Promise<UserResponse | ServerError> => {
     try {
       let response = await axios.post(
-        `https://fandom-quiz.herokuapp.com/user/details`,
+        `${API_URL}/user/details`,
         {
           avatarname: userProfileObj?.avatarname,
           firstname: userProfileObj?.firstname,
@@ -155,9 +157,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     email,
     password,
   }: UserSignupProps) {
+    setAuthState(authState => ({...authState, authLoader:true}))
     try {
       let response = await axios.post(
-        `https://fandom-quiz.herokuapp.com/signup`,
+        `${API_URL}/signup`,
         {
           avatarname,
           email,
@@ -166,12 +169,24 @@ export const AuthProvider: React.FC = ({ children }) => {
       );
 
       if (response.status === 201) {
+        
+        let {data:{newUser, accessToken}} = response
+        setupAuthHeaderForServiceCalls(accessToken);
+
+        setAuthState((authState) => ({
+          ...authState,
+          currentUser: newUser,
+          accessToken,
+        }));
+
+        localStorage?.setItem("accessToken", JSON.stringify({ accessToken }));
+
         toastDispatch({
           type: "TOGGLE_TOAST",
           payload: { toggle: true, message: "Account Created Successfully" },
         });
 
-        navigate("/login");
+        navigate("/");
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -190,13 +205,16 @@ export const AuthProvider: React.FC = ({ children }) => {
       } else {
         console.error(err);
       }
+    }finally{
+      setAuthState(authState => ({...authState, authLoader:false}))
     }
   }
 
   async function handleUserLogin({ usermail, userpassword }: UserLoginProps) {
+    setAuthState(authState => ({...authState, authLoader:true}))
     try {
       let response = await axios.post(
-        `https://fandom-quiz.herokuapp.com/login`,
+        `${API_URL}/login`,
         {
           usermail,
           userpassword,
@@ -236,6 +254,8 @@ export const AuthProvider: React.FC = ({ children }) => {
       } else {
         console.error(err);
       }
+    }finally{
+      setAuthState(authState => ({...authState, authLoader:false}))
     }
   }
 
@@ -281,6 +301,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       ...authState,
       currentUser: null,
       accessToken: null,
+      authLoader:false
     }));
 
     setupAuthHeaderForServiceCalls(null);

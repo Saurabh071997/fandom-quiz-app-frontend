@@ -15,6 +15,7 @@ import {
   UserScoreResponse,
   UserScoreProps,
 } from "../utils/Quiz.type";
+import {API_URL} from './config'
 
 export const QuizDataContext = createContext<ContextType>({} as ContextType);
 
@@ -26,7 +27,7 @@ export const QuizDataProvider: React.FC = ({ children }) => {
   const getCategories = async (): Promise<CategoryResponse | ServerError> => {
     try {
       let response = await axios.get<CategoryResponse>(
-        "https://fandom-quiz.herokuapp.com/categories"
+        `${API_URL}/categories`
       );
       return response.data;
     } catch (err) {
@@ -53,7 +54,7 @@ export const QuizDataProvider: React.FC = ({ children }) => {
   ): Promise<QuizDataResponse | ServerError> => {
     try {
       let response = await axios.get(
-        `https://fandom-quiz.herokuapp.com/quiz/${categoryId}`
+        `${API_URL}/quiz/${categoryId}`
       );
       return response.data;
     } catch (err) {
@@ -78,7 +79,7 @@ export const QuizDataProvider: React.FC = ({ children }) => {
   > => {
     try {
       let response = await axios.get(
-        "https://fandom-quiz.herokuapp.com/leaderboard"
+        `${API_URL}/leaderboard`
       );
       return response.data;
     } catch (err) {
@@ -97,7 +98,7 @@ export const QuizDataProvider: React.FC = ({ children }) => {
   const getUserScores = async (): Promise<UserScoreResponse | ServerError> => {
     try {
       let response = await axios.get(
-        `https://fandom-quiz.herokuapp.com/scores/users`
+        `${API_URL}/scores/users`
       );
       return response.data;
     } catch (err) {
@@ -124,7 +125,7 @@ export const QuizDataProvider: React.FC = ({ children }) => {
   ): Promise<UserScoreResponse | ServerError> => {
     try {
       let response = await axios.post(
-        `https://fandom-quiz.herokuapp.com/scores/users`,
+        `${API_URL}/scores/users`,
         {
           __quizId: userScoreObj?.__quizId,
           score: userScoreObj?.score,
@@ -157,7 +158,7 @@ export const QuizDataProvider: React.FC = ({ children }) => {
   ): Promise<LeaderBoardPostResponse | ServerError> => {
     try {
       let response = await axios.post(
-        `https://fandom-quiz.herokuapp.com/leaderboard`,
+        `${API_URL}/leaderboard`,
         {
           useravatar: leaderBoardObj?.useravatar,
           __quizId: leaderBoardObj?.__quizId,

@@ -1,4 +1,10 @@
-import { Typography, Container, TextField, Button } from "@material-ui/core";
+import {
+  Typography,
+  Container,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@material-ui/core";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./SignupPage.css";
@@ -25,7 +31,10 @@ export const ShowErrorMessage = ({ message }: ErrorMessage) => {
 export const SignupPage = () => {
   const classes = useStyles();
 
-  const { handleUserSignup } = useAuth();
+  const {
+    authState: { authLoader },
+    handleUserSignup,
+  } = useAuth();
 
   const [, width] = useWindowSize();
 
@@ -79,10 +88,8 @@ export const SignupPage = () => {
       <Container maxWidth="sm" className={classes.credentialsContainer}>
         <div className="align-center">
           <TextField
-            // id="outlined-basic"
             label="Avatar Name"
             variant="outlined"
-            // className={classes.inputFields}
             style={{
               width: width <= 600 ? "100%" : "60%",
               margin: "0.5rem auto",
@@ -97,10 +104,8 @@ export const SignupPage = () => {
           )}
 
           <TextField
-            // id="outlined-basic"
             label="Email"
             variant="outlined"
-            // className={classes.inputFields}
             style={{
               width: width <= 600 ? "100%" : "60%",
               margin: "0.5rem auto",
@@ -115,11 +120,9 @@ export const SignupPage = () => {
           )}
 
           <TextField
-            // id="outlined-basic"
             label="Password"
             type="password"
             variant="outlined"
-            // className={classes.inputFields}
             style={{
               width: width <= 600 ? "100%" : "60%",
               margin: "0.5rem auto",
@@ -131,11 +134,9 @@ export const SignupPage = () => {
           />
 
           <TextField
-            // id="outlined-basic"
             label="Confirm Password"
             type="password"
             variant="outlined"
-            // className={classes.inputFields}
             style={{
               width: width <= 600 ? "100%" : "60%",
               margin: "0.5rem auto",
@@ -155,23 +156,34 @@ export const SignupPage = () => {
           )}
 
           {/* <div className="align-center"> */}
+
+          <div style={{ margin: "0.5rem auto" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ fontSize: "1.15rem", width: "200px" }}
+              onClick={validateSignup}
+            >
+              {authLoader ? (
+                <CircularProgress
+                  style={{
+                    color: "whitesmoke",
+                    height: "1.5rem",
+                    width: "1.5rem",
+                  }}
+                />
+              ) : (
+                "Sign up"
+              )}
+            </Button>
+          </div>
+
           <div className="page-nav-txt">
             Already a User?
             <Link to="/login" style={{ textDecoration: "none" }}>
               {" "}
               <span className="page-nav-link">Login </span>{" "}
             </Link>
-          </div>
-
-          <div style={{ margin: "1rem auto" }}>
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ fontSize: "1.15rem", width:"200px" }}
-              onClick={validateSignup}
-            >
-              Signup
-            </Button>
           </div>
         </div>
       </Container>
