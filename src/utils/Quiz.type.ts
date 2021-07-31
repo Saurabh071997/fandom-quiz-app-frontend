@@ -114,6 +114,7 @@ export type SignupErrorTypes = {
   emailFormatError:string;
   passwordMismatchError:string;
   passwordLengthError:string;
+  emptyFieldError:string;
 }
 
 export type UserSignupProps = {

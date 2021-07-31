@@ -49,6 +49,7 @@ export const SignupPage = () => {
     emailFormatError: "emailFormatError",
     passwordMismatchError: "passwordMismatchError",
     passwordLengthError: "passwordLengthError",
+    emptyFieldError: "emptyFieldError",
   };
 
   useEffect(() => {
@@ -56,7 +57,18 @@ export const SignupPage = () => {
   }, []);
 
   const validateSignup = () => {
-    if (email && avatarname) {
+    if (
+      !email ||
+      email?.length < 1 ||
+      !password ||
+      password?.length < 1 ||
+      !avatarname ||
+      avatarname?.length < 1 ||
+      !confirmPassword ||
+      confirmPassword?.length < 1
+    ) {
+      setError(errorTypes.emptyFieldError);
+    } else {
       let regex =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
       let avatarregex = /^[a-zA-Z0-9_@#$&]+$/;
@@ -64,7 +76,7 @@ export const SignupPage = () => {
         setError(errorTypes.emailFormatError);
       } else if (!avatarregex.test(avatarname)) {
         setError(errorTypes.avatarNameFormatError);
-      } else if (password !== confirmPassword) {
+      } else if (password && confirmPassword && password !== confirmPassword) {
         setError(errorTypes.passwordMismatchError);
       } else if (
         password &&
@@ -153,6 +165,10 @@ export const SignupPage = () => {
 
           {error === errorTypes.passwordLengthError && (
             <ShowErrorMessage message="Password length must be more than 8 characters" />
+          )}
+
+          {error === errorTypes.emptyFieldError && (
+            <ShowErrorMessage message="All Fields are mandatory" />
           )}
 
           {/* <div className="align-center"> */}
