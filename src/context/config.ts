@@ -1,0 +1,1 @@
+export const API_URL = `https://fandom-quiz-app.herokuapp.com`

@@ -1,0 +1,6 @@
+.score-container{
+    padding:0.5rem;
+    position: relative;
+    border-top: 1px solid #1E40AF;
+    margin:2rem auto;
+}
